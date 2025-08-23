@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/profileview.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <body class="profile-view-body">
+    <div class="profile-view-container">
+        <div class="profile-pic">
+            {% if user.profile_pic %}
+                <img src="{{ user.profile_pic.url }}" alt="Profile Picture">
+            {% else %}
+                <p>No profile picture uploaded.</p>
+            {% endif %}
+        </div>
+
+        <h1>User: {{ user.Name }}</h1>
+        <p>Email: {{ user.Email }}</p>
+
+        
+
+        <div class="links">
+            <a href="{% url 'profile_settings' %}">Profile Settings</a>
+            <a href="{% url 'home' %}">Logout</a>
+        </div>
+        
+    </div>
+</body>
+
+</body>
+</html>
+
+
+
+
+
+

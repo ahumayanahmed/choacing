@@ -1,0 +1,53 @@
+.admission-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+.admission-form h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #003366;
+}
+
+.admission-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.admission-form input,
+.admission-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.admission-form textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.admission-form button {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    padding: 12px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.admission-form button:hover {
+    background-color: #0055aa;
+}

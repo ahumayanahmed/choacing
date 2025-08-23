@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Departments</title>
+  <style>
+    /* Reset styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      padding: 0;
+    }
+
+    ul li {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    ul li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    ul li a {
+      display: block;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: #007BFF;
+      transition: color 0.2s ease;
+    }
+
+    ul li a:hover {
+      color: #0056b3;
+    }
+
+    /* Responsive for mobile */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
+
+      ul li {
+        padding: 15px;
+      }
+
+      ul li a {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>All Departments</h1>
+  <ul>
+    {% for dept in departments %}
+      <li><a href="{% url 'teacher_by_department' dept %}">{{ dept }} Teachers</a></li>
+    {% empty %}
+      <li>No departments found</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

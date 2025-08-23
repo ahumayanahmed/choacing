@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forgot Password</title>
+</head>
+<body style="font-family: Arial; background:#f4f4f4; display:flex; justify-content:center; align-items:center; height:100vh;">
+    <div style="background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.2); width:300px;">
+        <h2 style="text-align:center;">Forgot Password</h2>
+        {% if error %}
+            <p style="color:red; text-align:center;">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Enter your email" required
+                   style="width:100%; padding:10px; margin:10px 0; border:1px solid #ccc; border-radius:5px;">
+            <button type="submit" style="width:100%; padding:10px; background:#007BFF; color:white; border:none; border-radius:5px;">Send OTP</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ department }} Teachers</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: #f4f6f8;
+      color: #111827;
+      padding: 24px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1f2937;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .header { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 20px; 
+      padding: 24px; 
+      background: linear-gradient(135deg, #eef2ff, #f0f9ff);
+      align-items: center; 
+    }
+
+    .photo-box {
+      width: 150px; height: 180px; 
+      background: #e5e7eb; 
+      border: 2px dashed #9ca3af; 
+      border-radius: 12px; 
+      display: grid; place-items: center; 
+      color: #6b7280;
+      flex: 0 0 auto;
+      overflow: hidden;
+    }
+    .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-box small { text-align: center; padding: 8px; }
+
+    .id-info { flex: 1 1 280px; }
+    .id-info h2 { margin: 0 0 8px 0; font-size: 1.5rem; font-weight: 700; color: #111827; }
+    .id-info p { margin: 4px 0; font-size: 0.95rem; color: #374151; }
+    .label { font-weight: 600; color: #1f2937; }
+
+    @media (max-width: 600px) {
+      .cards-container { grid-template-columns: 1fr; }
+      .header { flex-direction: column; align-items: center; }
+      .photo-box { width: 100%; height: 200px; }
+      .id-info { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <h1>{{ department }} Teachers</h1>
+
+  <div class="cards-container">
+    {% for teacher in teachers %}
+      <div class="card">
+        <div class="header">
+          <div class="photo-box">
+            {% if teacher.photo %}
+              <img src="{{ teacher.photo.url }}" alt="{{ teacher.name }}">
+            {% else %}
+              <small>No Photo</small>
+            {% endif %}
+          </div>
+
+          <div class="id-info">
+            <h2>{{ teacher.name }}</h2>
+            {% if teacher.qualifications %}
+            <p><span class="label">Qualifications:</span> {{ teacher.qualifications }}</p>
+            {% endif %}
+            {% if teacher.address %}
+            <p><span class="label">Address:</span> {{ teacher.address }}</p>
+            {% endif %}
+            {% if teacher.phone %}
+            <p><span class="label">Phone:</span> {{ teacher.phone }}</p>
+            {% endif %}
+            {% if teacher.department %}
+            <p><span class="label">Department:</span> {{ teacher.department }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No teachers found in {{ department }} department.</p>
+    {% endfor %}
+  </div>
+</body>
+</html>

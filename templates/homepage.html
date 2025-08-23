@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <title>Home Page</title>
+
+</head>
+<body>
+
+  <header>
+    <div class="logo">Humayan Ahmed Academi</div>
+    <nav>
+     
+      <a href="{% url 'services' %}">Services</a>
+      <a href="{% url 'dashboard' %}">Dashboard</a>
+      <div class="login">
+                <a href="#">About</a>
+                <div class="dropdown">
+                    <a href="{% url 'teacher'  %}">Teachers Info</a>
+                    <a href="{% url 'infirmationchack' %}">Students Result</a>
+                    <a href="{% url 'admission_form' %}">AdmissionForm</a>
+                   
+                </div>
+                
+            </div>
+            <a href="{% url 'department_list' %}">Departments Teacher</a>
+             
+      <a href="{% url 'profileview' %}">Profile</a>
+    </nav>
+    {% load static %}
+    <form class="search-box" action="{% url 'search' %}" method="get" role="search" aria-label="Site search">
+  <input type="text" name="q" placeholder="Search..." aria-label="Search"/>
+  <button type="submit" aria-label="Submit search">Search</button>
+</form>
+
+    <div class="menu-btn" onclick="toggleMenu()">&#8942;</div>
+  </header>
+
+  <div id="adBanner" class="ad-banner" role="region" aria-label="Advertisement">
+  <button class="ad-close" aria-label="Close advertisement">×</button>
+  <div class="ad-content">
+    
+    {% if banner %}
+          <p>{{ banner.banner }}</p>
+      {% endif %}
+    <a href="{% url 'admission_form' %}" class="ad-cta">Apply Now</a>
+  </div>
+</div>
+  <div class="dropdown" id="dropdownMenu">
+   
+    <a href="{% url 'services' %}">Services</a>br
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+
+    <div class="login">
+               
+                <div class="dropdown">
+                    <a href="{% url 'teacher' %}">Teachers Info</a><br>
+                    <a href="{% url 'infirmationchack' %}">Students Result</a>
+                    <a href="{% url 'admission_form' %}">AdmissionForm</a>
+                   
+                </div>
+               
+            </div>
+             <a href="{% url 'department_list' %}">Departments Teacher</a>
+    <a href="profileview.html">Setting</a>
+  </div>
+       
+  <main>
+    <div class="box1">
+    <h1>
+        {% if box %}
+            {{ box.first.box_header }}
+        {% endif %}
+    </h1>
+    <div class="banner-slider">
+        <div class="slides">
+            {% for b in box %}
+                {% if b.photo %}
+                    <img src="{{ b.photo.url }}" alt="{{ b.box_header }}">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<div class="box box2">
+    {% for b2 in box2 %}
+        <p class="p1">{{ b2.box_header }}</p>
+        <p>{{ b2.sevices }}</p>
+    {% endfor %}
+</div>
+
+    
+  </main>
+  
+
+  <footer>
+  <div class="footer-content">
+    {% for fot in foot %}
+      <p> {{ fot.title }}</p>
+      <div class="social-links">
+        {% for name, link in fot.get_social_links %}
+          {% if link %}
+            <a href="{{ link }}" target="_blank">{{ name }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Mobile menu toggle ---
+  const dropdown = document.getElementById('dropdownMenu');
+  const menuBtn = document.querySelector('.menu-btn');
+
+  menuBtn.addEventListener('click', () => {
+    dropdown.classList.toggle('show');
+  });
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(event) {
+    if (
+      dropdown.classList.contains('show') &&
+      !dropdown.contains(event.target) &&
+      !menuBtn.contains(event.target)
+    ) {
+      dropdown.classList.remove('show');
+    }
+  });
+
+  // Mobile submenu toggle (if any submenu toggle button exists)
+  document.querySelectorAll('.submenu-toggle').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.nextElementSibling.classList.toggle('show');
+    });
+  });
+
+  // --- Ad Banner ---
+  const ad = document.getElementById('adBanner');
+  if (ad) {
+    // সরাসরি show করুন
+    requestAnimationFrame(() => ad.classList.add('show'));
+
+    // Close button
+    const adCloseBtn = ad.querySelector('.ad-close');
+    adCloseBtn.addEventListener('click', () => {
+      ad.classList.remove('show');
+    });
+
+    // ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && ad.classList.contains('show')) {
+        ad.classList.remove('show');
+      }
+    });
+  }
+
+  // --- Banner Slider ---
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.banner-slider .slides img');
+  const totalSlides = slides.length;
+
+  function showSlide(index) {
+    const slidesContainer = document.querySelector('.banner-slider .slides');
+    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  // Auto-slide every 3 seconds (change 1000 to 3000 for 3s)
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }, 3000);
+
+});
+</script>
+
+
+</body>
+</html>

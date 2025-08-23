@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <link rel="stylesheet" href="{% static 'css/setting.css' %}">
+</head>
+<body class="settings-body">
+
+    <div class="settings-container">
+        <h2>Profile Settings</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Profile</button>
+            <a href="{% url 'homepage' %}" class="cancel">Cancel</a>
+        </form>
+
+        <hr>
+
+        <div class="profile-pic">
+            {% if user.profile_pic %}
+                <img src="{{ user.profile_pic.url }}" width="150" height="150">
+            {% else %}
+                <p>No profile picture uploaded.</p>
+            {% endif %}
+        </div>
+
+        <div class="password-link">
+            <a href="{% url 'passc' %}">Change Password</a>
+        </div>
+    </div>
+
+</body>
+</html>

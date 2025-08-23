@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <header>
+    <div class="logo">Humayan Ahmed Academi</div>
+    <nav>
+      <a href="{% url 'homepage' %}">Home</a>
+      <a href="{% url 'services' %}">Services</a>
+      <div class="login">
+        <a href="#">About</a>
+      <div class="dropdown">
+                    <a href="{% url 'teacher' %}">Teachers Info</a>
+                    <a href="{% url 'infirmationchack' %}">Students Result</a>
+                    <a href="{% url 'admission_form' %}">AdmissionForm</a>
+                   
+                </div>
+               
+      </div>
+       <a href="{% url 'department_list' %}">Departments Teacher</a>
+    </nav>
+     {% load static %}
+    <form class="search-box" action="{% url 'search' %}" method="get" role="search" aria-label="Site search">
+  <input type="text" name="q" placeholder="Search..." aria-label="Search"/>
+  <button type="submit" aria-label="Submit search">Search</button>
+</form>
+    <div class="menu-btn" onclick="toggleMenu()">&#8942;</div>
+  </header>
+
+  <div class="dropdown" id="dropdownMenu">
+    <a href="{% url 'homepage' %}">Home</a>
+    <a href="{% url 'services' %}">Services</a>
+     <div class="login">
+        
+    <div class="dropdown">
+                    <a href="{% url 'teacher' %}">Teachers Info</a>
+                    <a href="{% url 'infirmationchack' %}">Students Result</a>
+                    <a href="{% url 'admission_form' %}">AdmissionForm</a>
+                </div>
+      </div>
+      
+   <a href="{% url 'department_list' %}">Departments Teacher</a>
+    
+  </div>
+       <div class="fine"><h1>Welcome to dashboard</h1>
+        
+        </div>
+    <div class="dashboard">
+    <div class="card">
+        <h3>Teacher</h3>
+        <p>Total Teacher: {{ total_teacher }}</p>
+        {% for dept, count in teacher_counts.items %}
+            <p>{{ dept }}: {{ count }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="card">
+        <h3>Student</h3>
+        {% for cls, info in student_counts.items %}
+            <p>{{ cls }} Total: {{ info.total }}</p>
+            {% for dept, count in info.items %}
+                {% if dept != "total" %}
+                    <p>{{ dept }}: {{ count }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="card">
+        <h3>Result</h3>
+        <p>Total Pass: {{ students_pass_count }}</p>
+        <p>Total Fail: {{ students_fail_count }}</p>
+        <p>Total GPA-5: {{ perfect_gpa_count }}</p>
+    </div>
+</div>
+
+
+{% for r in routine %}
+    <div class="routine-box">
+        <h3>Routine: {{ r.titel }}</h3>
+        <div class="img-container">
+            <img src="{{ r.photo.url }}" alt="{{ r.titel }}">
+        </div>
+    </div>
+{% empty %}
+    <p>No routine available.</p>
+{% endfor %}
+
+
+
+
+    <footer>
+    {% include "base/footer.html" %}
+  
+  </footer>
+<script>
+  const menuBtn = document.querySelector('.menu-btn');
+  const dropdown = document.getElementById('dropdownMenu');
+
+  // Toggle menu on button click
+  menuBtn.addEventListener('click', function(e) {
+    dropdown.classList.toggle('show');
+  });
+
+  // Hide menu on outside click
+  document.addEventListener('click', function(e) {
+    if (
+      dropdown.classList.contains('show') &&
+      !dropdown.contains(e.target) &&
+      !menuBtn.contains(e.target)
+    ) {
+      dropdown.classList.remove('show');
+    }
+  });
+</script>
+
+
+</body>
+</html>

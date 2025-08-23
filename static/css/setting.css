@@ -1,0 +1,132 @@
+/* =====================
+   SETTINGS PAGE CSS
+===================== */
+
+/* Body setup */
+.settings-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+}
+
+/* Container for the form and profile pic */
+.settings-container {
+    max-width: 500px;
+    width: 100%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Page Title */
+.settings-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form Styling */
+.settings-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.settings-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.settings-container input[type="text"],
+.settings-container input[type="email"],
+.settings-container input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.settings-container button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.settings-container button:hover {
+    background: #218838;
+}
+
+/* Cancel Link */
+.settings-container a.cancel {
+    display: inline-block;
+    margin-left: 10px;
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.settings-container a.cancel:hover {
+    text-decoration: underline;
+}
+
+/* Profile Picture */
+.settings-container .profile-pic {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.settings-container .profile-pic img {
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Change Password Link */
+.settings-container .password-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.settings-container .password-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.settings-container .password-link a:hover {
+    text-decoration: underline;
+}
+
+/* Error messages */
+.settings-container .error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .settings-container {
+        padding: 20px;
+    }
+}

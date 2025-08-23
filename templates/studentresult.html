@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/admision.css' %}">
+    <title>Student Information Form</title>
+</head>
+<body>
+    <div class="admission-form">
+  <h1 class="title">Student Information Form / ছাত্র ভর্তি ফর্ম</h1>
+
+  <form action=" " method="post">
+     {% csrf_token %}
+    <label for="name">Name / ছাত্রের নাম:</label>
+    <input type="text" id="name" name="name" placeholder="Enter student's name" required>
+
+    <label for="father">Father's Name / পিতার নাম:</label>
+    <input type="text" id="father" name="father" placeholder="Enter father's name" required>
+
+    <label for="mother">Mother's Name / মাতার নাম:</label>
+    <input type="text" id="mother" name="mother" placeholder="Enter mother's name" required>
+
+    <label for="class">Class / শ্রেণী:</label>
+    <input type="text" id="class" name="class" placeholder="Enter class" required>
+
+    <label for="roll">Roll No / রোল নম্বর:</label>
+    <input type="text" id="roll" name="roll" placeholder="Enter roll number" required>
+
+    <label for="departments">Department:</label>
+    <input type="text" id="departments" name="departments" placeholder="Enter department" required>
+
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>

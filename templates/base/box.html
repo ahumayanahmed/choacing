@@ -1,0 +1,16 @@
+<div class="box1">
+    <h1>
+        {% if box %}
+            {{ box.first.box_header }}
+        {% endif %}
+    </h1>
+    <div class="banner-slider">
+        <div class="slides">
+            {% for b in box %}
+                {% if b.photo %}
+                    <img src="{{ b.photo.url }}" alt="{{ b.box_header }}">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

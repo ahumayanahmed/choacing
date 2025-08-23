@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Results</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #111827;
+    padding: 20px;
+}
+
+h1, h2 {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    background: #fff;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+li:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 600px) {
+    li {
+        font-size: 0.9rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<h1>Search Results for "{{ query }}"</h1>
+
+<h2>Teachers</h2>
+{% if teachers %}
+    <ul>
+    {% for t in teachers %}
+        <li>{{ t.name }} - {{ t.department }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No teachers found.</p>
+{% endif %}
+
+<h2>Students</h2>
+{% if students %}
+    <ul>
+    {% for s in students %}
+        <li>{{ s.name }} - Class: {{ s.student_class }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No students found.</p>
+{% endif %}
+
+</body>
+</html>

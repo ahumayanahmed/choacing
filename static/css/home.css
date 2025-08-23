@@ -1,0 +1,546 @@
+/* =====================
+   RESET & BASE STYLES
+===================== */
+* {
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* =====================
+   HEADER
+===================== */
+header {
+    background-color: #003366; /* merged color */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: relative;
+}
+
+header .logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+header nav a:hover {
+    background-color: #0066cc;
+    border-radius: 4px;
+}
+
+/* Dropdown */
+header nav .login, 
+header nav .dropdown {
+    position: relative;
+}
+
+header nav .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #003366;
+    min-width: 150px;
+    border-radius: 4px;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+header nav .dropdown a {
+    padding: 10px;
+    display: block;
+}
+
+header nav .login:hover .dropdown {
+    display: flex;
+}
+
+header nav .login > a {
+    cursor: pointer;
+}
+
+header nav .dropdown a:hover {
+    background-color: #0066cc;
+}
+
+/* ----- Header layout tweaks for search box ----- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Search box */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto; /* nav-এর ডানদিকে ঠেলে দেয় */
+}
+
+.search-box input {
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  outline: none;
+  width: 220px;
+}
+
+.search-box input:focus {
+  border-color: #7c3aed; /* হালকা ফোকাস */
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+}
+
+.search-box button {
+  height: 36px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 18px;
+  background: #7c3aed;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.search-box button:hover {
+  filter: brightness(0.95);
+}
+
+/* ছোট স্ক্রিনে সার্চ বক্স কমপ্যাক্ট */
+@media (max-width: 768px) {
+  .search-box input {
+    width: 150px;
+  }
+}
+
+
+.ad-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9); /* মাঝখানে */
+  z-index: 9999;
+
+  width: 50%;            /* Desktop এ 50% */
+  max-width: 800px;      /* সর্বোচ্চ সীমা */
+  min-width: 300px;      /* মোবাইলের জন্য ন্যূনতম সীমা */
+
+  background: #ffffff;
+  border: 1px solid #e9e9ee;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  overflow: hidden;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease;
+  visibility: hidden;
+}
+
+.ad-banner.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1); /* সুন্দর এনিমেশন */
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.ad-banner.hide {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Close button */
+.ad-banner .ad-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #666;
+}
+.ad-banner .ad-close:hover {
+  color: #000;
+}
+
+/* Content style */
+.ad-banner .ad-content {
+  padding: 28px;
+  text-align: center;
+}
+.ad-banner h3 {
+  margin: 0 0 10px 0;
+  font-size: 22px;
+}
+.ad-banner p {
+  margin: 0 0 18px 0;
+  color: #444;
+  line-height: 1.5;
+}
+.ad-banner .ad-cta {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #16a34a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.ad-banner .ad-cta:hover {
+  filter: brightness(0.95);
+}
+
+/* ✅ Responsive */
+@media (max-width: 1024px) {
+  .ad-banner {
+    width: 70%;   /* ট্যাবলেটে একটু বড় */
+  }
+}
+@media (max-width: 768px) {
+  .ad-banner {
+    width: 85%;   /* মোবাইল স্ক্রিনে 85% */
+  }
+}
+@media (max-width: 480px) {
+  .ad-banner {
+    width: 95%;   /* ছোট মোবাইল স্ক্রিনে প্রায় ফুল */
+  }
+}
+
+
+
+
+
+/* Hamburger menu (mobile) */
+.menu-btn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Dropdown menu for small screen */
+#dropdownMenu {
+    display: none;
+    flex-direction: column;
+    background: #003366;
+    position: absolute;
+    top: 92px;
+    right: 20px;
+    padding:5px;
+    border-radius: 5px;
+}
+
+#dropdownMenu a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+#dropdownMenu.show {
+    display: flex;
+}
+
+
+
+
+main {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-bottom: 10px; /* নিচের বক্সের জন্য ফাঁক */
+    
+  
+}
+main .box1{
+
+  flex: 1;
+  min-width: 300px; /* ছোট হলেও ছবি কাটা যাবে না */
+  text-align: center
+}
+
+
+
+main .box1 img {
+  max-width: 100%;  /* ছবিটা container-এর মধ্যে ফিট হবে */
+  height: auto;
+}
+
+.fine h1{
+    padding-top: 30px;
+}
+
+.box1 {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+    
+}
+
+.box1 h1 {
+  margin-bottom: 10px;  
+  font-size: 28px;
+  font-weight: bold;
+  color: rgb(220, 24, 201);
+  background-color: transparent;
+
+}
+
+.box2 {
+    height: 700px; /* লম্বা বক্স */
+    width: 500px;
+    background-color: rgb(245, 221, 9);
+    padding: 30px;
+    margin-top: 50px; /* যতটুকু নিচে নামাতে চান সেটুকু বাড়ান */
+    flex: 1;
+    min-width: 300px;
+    word-wrap: break-word;   /* লম্বা শব্দ হলে ভেঙে যাবে */
+    overflow-wrap: break-word;
+    box-sizing: border-box;  /* padding + border হিসেব করবে */
+}
+
+main .box2 {
+  flex: 1;
+  min-width: 300px; /* ছোট হলেও লেখা box বাইরে যাবে না */
+  background: yellow;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.box2 p{
+
+    color: #191515;
+    font-weight: bold;      /* আগে থেকেই bold */
+    font-size: 20px; 
+    padding: 5px;       /* লেখার সাইজ বড় করা */
+    white-space: normal;
+}
+
+.box2 .p1{
+
+    color: #09bf0f;
+    font-weight: bold;  
+    text-align: center;    
+    font-size: 30px; 
+    padding: 15px; 
+}
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* বক্স পূর্ণ করলেও proportion ঠিক রাখবে */
+}
+
+/*Banner*/
+
+.banner-slider {
+    overflow: hidden;
+    width: 100%;
+    height: 400px; /* Box অনুযায়ী height */
+    border-radius: 10px;
+}
+
+.banner-slider .slides {
+    display: flex;
+    transition: transform 1s ease-in-out; /* Smooth slide */
+}
+
+.banner-slider .slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* original image crop হবে না */
+    flex-shrink: 0;
+    background: #000;
+}
+
+
+/*Routine*/
+
+.routine-box {
+    width: 350px;          
+    height: 400px;         
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-top: 35px;           /* padding বাদ দিলাম */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(206, 241, 5, 0.1);
+    margin: 20px auto;
+    overflow: hidden;     /* image box ছাড়াই overflow */
+    position: relative;
+}
+
+.routine-box h3 {
+    position: absolute;  /* image এর উপরে title show করবে */
+    top: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,0.5); /* transparent bg */
+    margin: 0;
+    padding: 8px 0;
+    font-size: 22px;
+}
+
+.routine-box .img-container {
+    width: 100%;
+    height: 100%;        /* পুরো box fill হবে */
+}
+
+.routine-box .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* পুরো box cover করবে */
+}
+
+.img-container img{
+    padding: 30px 7px;
+  }
+
+
+
+/* =====================
+   DASHBOARD CARDS
+===================== */
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: #004080;
+    color: white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.card p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Title Section */
+.fine h1 {
+    text-align: center;   
+    color: #004080;
+    font-size: 32px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    margin-top: 50px;
+}
+
+footer .social-links a {
+    color: #00aced;
+    margin: 0 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer .social-links a:hover {
+    color: #ffcc00;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 768px) {
+    header nav {
+        display: none; /* Hide full nav */
+    }
+    .menu-btn {
+        display: block; /* Show menu button */
+    }
+}
+
+@media (min-width: 769px) {
+    #dropdownMenu {
+        display: none !important; /* Hide mobile dropdown */
+    }
+}
+
+@media (max-width: 600px) {
+  main {
+    flex-direction: column;  /* ছোট স্ক্রিনে বক্সগুলো একটার নিচে একটা */
+  }
+
+  .box1, .box2 {
+    width: 100%;  /* পুরো স্ক্রিন জুড়ে থাকবে */
+  }
+
+  .img-container img{
+    padding: 35px 2px;
+  }
+  .fine h1{
+    padding-top: 30px;
+  }
+
+  main .box1{
+    padding-top: 75px;
+  }
+  .box1 h1{
+    padding: 30px;
+  }
+}
+

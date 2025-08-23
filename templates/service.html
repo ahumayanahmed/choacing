@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaching Services</title>
+    <link rel="stylesheet" href="{% static 'css/service.css' %}">
+   
+      
+</head>
+<body>
+    <header>
+    <h1>
+        {% if serv %}
+            {{ serv.first.ervices_heders }}
+        {% else %}
+            Coaching Services for Students
+        {% endif %}
+    </h1>
+</header>
+
+<main>
+    <h2>
+        {% if serv %}
+            {{ serv.first.ervices_heder }}
+        {% else %}
+            Our Services
+        {% endif %}
+    </h2>
+
+    <ul>
+        {% for s in serv %}
+            <li>{{ s.sevices }}</li>
+        {% empty %}
+            <li>No services available right now</li>
+        {% endfor %}
+    </ul>
+</main>
+
+</body>
+</html>

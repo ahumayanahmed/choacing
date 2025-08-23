@@ -1,0 +1,13 @@
+<div class="footer-content">
+    {% for fot in foot %}
+      <p> {{ fot.title }}</p>
+      <div class="social-links">
+        {% for name, link in fot.get_social_links %}
+          {% if link %}
+            <a href="{{ link }}" target="_blank">{{ name }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</footer>
